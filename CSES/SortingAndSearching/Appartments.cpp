@@ -1,10 +1,5 @@
 #include <bits/stdc++.h>
 
-#define int long long int
-#define F first
-#define S second
-#define pb push_back
-
 using namespace std;
 
 int32_t main()
@@ -20,28 +15,34 @@ int32_t main()
 	for (auto &i: applicants)
 		cin >> i;
 
-	vector<int> appartments(n);
+	vector<int> appartments(m);
 	for (auto &i : appartments)
 		cin >> i;
 
-	int count=0;
+	
 	sort(applicants.begin(), applicants.end());
 	sort(appartments.begin(), appartments.end());
 
-	int first=0,second=0;
-    while(first<n&&second<m){
-        if(abs(applicants[first]-appartments[second])<=k){
-            count++;
-            first++;
-            second++;
-        }
-        else if(applicants[first]>appartments[second]){
-            second++;
-        }
-        else{
-            first++;
-        }
-    }
-    cout<<count<<endl;
+	int i=0;
+	int j=0;
+
+	int count = 0;
+
+	while (i < n) {
+		while (j < m && appartments[j] < applicants[i] - k) {
+			j++;
+		}
+
+		if (abs(appartments[j] - applicants[k]) <= k) {
+			count++;
+			i++;
+			j++;
+		} else {
+			i++;
+		}
+	}
+
+	cout << count;
+
     return 0;
 }
